@@ -4,7 +4,7 @@ let desconto;
 let valorFinal;
 
 valor = prompt("Informe o valor da compra: ");
-valor > 100 ? taxa = 0.1 : taxa = 0.05;
+taxa = valor > 100 ? 0.1 : 0.05;
 desconto = valor * taxa;
 valorFinal = valor - desconto;
 

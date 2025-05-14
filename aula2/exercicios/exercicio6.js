@@ -5,8 +5,8 @@ let option;
 let imc;
 
 nome = prompt("Qual o seu nome?");
-peso = prompt("Digite seu peso (em kg):");
-altura = prompt("Digite sua altura (em metros):");
+peso = Number(prompt("Digite seu peso (em kg):"));
+altura = Number(prompt("Digite sua altura (em metros):"));
 
 option = confirm("Seus dados:\nNome: " + nome + "\nPeso: " + peso + "\nAltura: " + altura + "\nDeseja continuar?");
 
