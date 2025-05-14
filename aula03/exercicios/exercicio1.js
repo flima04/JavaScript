@@ -10,11 +10,9 @@ idade = ano - nasc;
 if (idade >= 18 ) {
     alert("Você completa " + idade + " anos em " + ano + " e poderá tirar a habilitação.");
 }
-
 else if (idade > 0 && idade < 18) {
     alert("Você completa " + idade + " anos em " + ano + " e ainda não poderá tirar a habilitação.");
 }
-
 else{
     alert("Idade inválida.");
 }
