@@ -3,6 +3,8 @@
 let num = 0;
 let guess = 0;
 let option = true;
+let bestPlayer = "";
+let bestGuess = 100;
 
 alert("Bem-vindo ao Jogo da Adivinhação!🎮")
 
