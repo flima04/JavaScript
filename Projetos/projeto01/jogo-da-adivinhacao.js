@@ -1,10 +1,8 @@
-//Ainda em deselvovimento
-
 let num = 0;
 let guess = 0;
 let option = true;
 let bestPlayer = "";
-let bestGuess = 100;
+let bestGuess = 999;
 
 alert("Bem-vindo ao Jogo da Adivinhação!🎮")
 
@@ -35,7 +33,18 @@ do {
                 alert("Parabéns, " + name + "! Você acertou em " + count + " tentativas.\nConseguiu! Persistência é tudo! 💪")
             }  
         }
+
     } while (guess != num);
+
+    if (count < bestGuess) {
+        bestGuess = count;
+        bestPlayer = name;
+
+        alert(`🏆 Novo recorde! ${bestPlayer} é o melhor jogador com ${bestGuess} tentativas.`)
+    }
+    else{
+        alert(`🏆 ${bestPlayer} detém o melhor record com ${bestGuess} tentativas.`)
+    }
 
     option = confirm("Deseja jogar novamente?")
 
