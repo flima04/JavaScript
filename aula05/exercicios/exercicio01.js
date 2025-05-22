@@ -17,7 +17,6 @@ function gerenciarTarefas ( shores, action, name) {
     }
 }
 
-
 gerenciarTarefas(tarefas, "removerInicio");
 
 console.log(tarefas);
