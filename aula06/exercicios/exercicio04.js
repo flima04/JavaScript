@@ -4,9 +4,11 @@ const produtos = [
   { nome: "Webcam", preco: 250 }
 ];
 
-function exibirCatalogo (products) {
+function exibirCatalogo (produtos) {
     console.log("Catálogo de Produtos:");
-    for (chave in products) {
-        console.log(`${nome} - R$${preco}`);
+    for (produto of produtos) {
+        console.log(`${produto.nome} - R$${produto.preco}`);
     }
 }
+
+exibirCatalogo(produtos);
