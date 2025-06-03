@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exercício: Cadastro de Produtos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input, select, textarea {
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #mensagemErro {
+      color: red;
+      margin-bottom: 10px;
+    }
+
+    .produto {
+      margin-top: 20px;
+      text-align: left;
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .produto + .produto {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Cadastro de Produtos</h2>
+
+    <form id="formProduto">
+      <input type="text" id="nome" placeholder="Nome do produto" required />
+      <input type="number" id="preco" placeholder="Preço (R$)" required />
+      <select id="categoria" required>
+        <option value="">Selecione a categoria</option>
+        <option>Eletrônicos</option>
+        <option>Livros</option>
+        <option>Roupas</option>
+        <option>Outros</option>
+      </select>
+      <textarea id="descricao" placeholder="Descrição do produto" rows="3"></textarea>
+      <div id="mensagemErro"></div>
+      <button type="submit">Cadastrar</button>
+    </form>
+
+    <div id="listaProdutos"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("formProduto");
+    form.addEventListener("submit", () => {
+        event.preventDefault();
+        
+        const nome = document.getElementById("nome").value;
+        const preco = parseFloat(document.getElementById("preco").value);
+        const categoria = document.getElementById("categoria").value;
+        const descricao = document.getElementById("descricao").value;
+        const mensagemErro = document.getElementById("mensagemErro");
+        const listaProdutos = document.getElementById("listaProdutos");
+
+        let valido = true
+
+        if (nome.length < 3) {
+            mensagemErro.innerHTML = "<p>O nome deve ter no mínimo 3 caracteres.</p>";
+            valido = false;
+        }
+
+        if (preco <= 0) {
+            //const novoParagrafo = document.createElement("p");
+            //novoParagrafo.textContent = "O preço deve ser maior que R$0,00.";
+            //mensagemErro.appendChild = novoParagrafo;
+            mensagemErro.innerHTML = "<p>O preço deve ser maior que R$0,00.</p>";
+            valido = false;
+        }
+
+        
+    })
+  </script>
+</body>
+</html>
