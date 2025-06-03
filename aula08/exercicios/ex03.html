@@ -101,6 +101,8 @@
 
         let valido = true
 
+        mensagemErro.innerHTML = "";
+
         if (nome.length < 3) {
             mensagemErro.innerHTML = "<p>O nome deve ter no mínimo 3 caracteres.</p>";
             valido = false;
@@ -112,6 +114,26 @@
             //mensagemErro.appendChild = novoParagrafo;
             mensagemErro.innerHTML = "<p>O preço deve ser maior que R$0,00.</p>";
             valido = false;
+        }
+
+        if (categoria === "") {
+          mensagemErro.innerHTML = "<p>Selecione uma categoria.</p>";
+        }
+
+        if (valido == true) {
+          const cadastroProduto = document.createElement("div");
+          cadastroProduto.className = "produto";
+
+          cadastroProduto.innerHTML = `<h2>${nome}</h2>
+            <p><strong>Preço: </strong>${preco.toFixed(2)}</p>
+            <p><strong>Categoria: </strong>${categoria}</p>
+            <p><strong>Descrição: </strong>${descricao}</p>
+            <p><strong>Categoria: </strong>${categoria}</p>
+            <p><strong>Cadastrado em: </strong>${new Date().toLocaleString("pt-BR")}</p>`;
+
+          listaProdutos.appendChild(cadastroProduto);
+
+          event.target.reset();
         }
 
         
