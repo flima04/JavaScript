@@ -89,7 +89,7 @@
 
   <script>
     const form = document.getElementById("formProduto");
-    form.addEventListener("submit", () => {
+    form.addEventListener("submit", (event) => {
         event.preventDefault();
         
         const nome = document.getElementById("nome").value;
