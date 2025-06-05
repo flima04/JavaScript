@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jogo da Adivinhação</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Jogo da Adivinhação</h1>
+
+    <div id="inicio">
+      <label for="nome">Qual o seu nome?</label>
+      <input type="text" id="nome">
+      <p id="erroNome" class="hidden">Digite um nome válido</p>
+      <button id="comecarBtn">Começar Jogo</button>
+    </div>
+
+    <div id="jogo" class="hidden">
+      <p id="boasVindas"></p>
+      <p>Digite um número de 1 a 100:</p>
+      <input type="number" id="palpite" />
+      <p id="erroPalpite" class="hidden">Palpite inválido.</p>
+      <button id="tentarBtn">Tentar</button>
+      <p id="mensagem"></p>
+    </div>
+
+    <div id="fim" class="hidden">
+      <p id="resultado"></p>
+      <button id="jogarNovamenteBtn">Jogar Novamente</button>
+    </div>
+
+    <footer>
+      <p id="recorde">🏅 Melhor jogador: -</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
