@@ -1,0 +1,349 @@
+<!-------Exercício 01--------->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Seção de Comentários</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f9f9f9;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .container {
+      background: white;
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      box-sizing: border-box;
+      resize: none;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .comentario {
+      background-color: #f1f1f1;
+      padding: 12px;
+      border-radius: 5px;
+      margin-top: 15px;
+      text-align: left;
+      position: relative;
+    }
+
+    .comentario strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .autor {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .texto-comentario {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .data {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 8px;
+    }
+
+    .remover {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 8px;
+      cursor: pointer;
+    }
+
+    .remover:hover {
+      background-color: #bd2130;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Deixe seu comentário</h2>
+    <input type="text" id="inputNome" placeholder="Digite seu nome" />
+    <textarea id="inputComentario" rows="4" placeholder="Digite seu comentário..."></textarea>
+    <br />
+    <button id="btn-adicionar-comentario">Publicar</button>
+
+    <div id="secaoComentarios"></div>
+  </div>
+
+  <script>
+    const inputNome = document.getElementById("inputNome");
+    const inputComentario = document.getElementById("inputComentario");
+    const btnAdd = document.getElementById("btn-adicionar-comentario");
+    const secaoComentarios = document.getElementById("secaoComentarios");
+
+    btnAdd.addEventListener("click", () => {
+      let nome = inputNome.value;
+      let comentario = inputComentario.value;
+
+      if (!nome || !comentario) {
+        alert("Nome e comentário são campos requeridos.");
+        return;
+      }
+
+      function addNovoComentario() {
+        const novoComentario = document.createElement("div");
+        novoComentario.classList.add("comentario");
+
+        const autor = document.createElement("h3");
+        autor.classList.add("autor");
+        autor.textContent = nome;
+
+        const textoComentario = document.createElement("p");
+        textoComentario.classList.add("texto-comentario");
+        textoComentario.textContent = comentario;
+
+        const data = document.createElement("p");
+        data.classList.add("data");
+        const novaData = new Date();
+        data.textContent = `Comentado em: ${novaData.toLocaleString("pt-BR")}`;
+
+        const remover = document.createElement("button");
+        remover.classList.add("remover");
+        remover.textContent = "Remover";
+
+        novoComentario.appendChild(autor);
+        novoComentario.appendChild(textoComentario);
+        novoComentario.appendChild(data);
+        novoComentario.appendChild(remover);
+
+        secaoComentarios.appendChild(novoComentario);
+
+        inputNome.value = "";
+        inputComentario.value = "";
+
+        remover.addEventListener("click", () => {
+          novoComentario.remove();
+        })
+
+      }
+
+      addNovoComentario();
+
+    })
+  </script>
+</body>
+
+</html>
+
+
+<!-------Exercício 02--------->
+
+
+
+
+<!-------Exercício 03--------->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciador de Contatos</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .formulario {
+      margin-bottom: 30px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #lista-contatos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .contato {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 200px;
+      text-align: center;
+    }
+
+    .contato img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .contato h3 {
+      margin: 5px 0;
+      font-size: 18px;
+    }
+
+    .contato p {
+      margin: 5px 0;
+      color: #333;
+    }
+
+    .contato button {
+      margin-top: 10px;
+      background-color: crimson;
+    }
+
+    .contato button:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gerenciador de Contatos</h1>
+
+  <div class="formulario">
+    <input type="text" id="nome" placeholder="Nome">
+    <input type="text" id="numero" placeholder="Número">
+    <input type="text" id="foto" placeholder="URL da Foto (opcional)">
+    <button id="btn-adicionar">Adicionar Contato</button>
+  </div>
+
+  <div id="lista-contatos"></div>
+
+  <script>
+    /* Formato de um contato
+    <div class="contato">
+        <img src="URL_DA_IMAGEM" alt="Foto do contato">
+        <h3>NOME DA PESSOA</h3>
+        <p>NÚMERO DE TELEFONE</p>
+        <button class="remover">Remover</button>
+    </div> */
+    const nome = document.getElementById("nome");
+    const numero = document.getElementById("numero");
+    const foto = document.getElementById("foto");
+    const btnadicionar = document.getElementById("btn-adicionar");
+    const listaContatos = document.getElementById("lista-contatos");
+
+    function criarContato () {
+      let name = nome.value;
+      let number = numero.value;
+      let photo = foto.value;
+
+
+      if (!name || !number) {
+        alert("Nome e número são campos obrigatórios.");
+        return;
+      }
+
+      const contato = document.createElement("div");
+      contato.classList.add("contato");
+
+      const img = document.createElement("img");
+
+      if (!photo) {
+        img.setAttribute("src", "https://cdn-icons-png.flaticon.com/512/6388/6388307.png");
+      }
+      else {
+        img.setAttribute("src", photo);
+      }
+
+      const nomeContato = document.createElement("h3");
+      nomeContato.textContent = name;
+      
+      const numeroContato = document.createElement("p");
+      numeroContato.textContent = number;
+
+      const btnRemover = document.createElement("button");
+      btnRemover.textContent = "Remover";
+      btnRemover.classList.add("remover");
+      
+      contato.appendChild(img);
+      contato.appendChild(nomeContato);
+      contato.appendChild(numeroContato);
+      contato.appendChild(btnRemover);
+
+      listaContatos.appendChild(contato);
+
+      nome.value = "";
+      numero.value = "";
+      foto.value = "";
+
+      btnRemover.addEventListener("click", () => {
+      contato.remove();
+      });
+
+    }
+
+    btnadicionar.addEventListener("click", () => {
+      criarContato();
+    })
+
+  </script>
+</body>
+</html>
