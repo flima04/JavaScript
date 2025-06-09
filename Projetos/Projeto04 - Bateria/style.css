@@ -16,31 +16,31 @@ footer {
 }
 
 .w {
-  background-image: url("imagens/tom1.png");
+  background-image: url("assets/imagens/tom1.png");
 }
 
 .a {
-  background-image: url("imagens/tom2.png");
+  background-image: url("assets/imagens/tom2.png");
 }
 
 .s {
-  background-image: url("imagens/tom3.png");
+  background-image: url("assets/imagens/tom3.png");
 }
 
 .d {
-  background-image: url("imagens/tom4.png");
+  background-image: url("assets/imagens/tom4.png");
 }
 
 .j {
-  background-image: url("imagens/snare.png");
+  background-image: url("assets/imagens/snare.png");
 }
 
 .k {
-  background-image: url("imagens/crash.png");
+  background-image: url("assets/imagens/crash.png");
 }
 
 .l {
-  background-image: url("imagens/kick.png");
+  background-image: url("assets/imagens/kick.png");
 }
 
 .conjunto {
