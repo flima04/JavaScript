@@ -52,6 +52,13 @@
   <script>
     const body = document.body;
 
+    window.addEventListener("DOMContentLoaded", () => {
+            const temaSalvo = localStorage.getItem("tema");
+            if (temaSalvo) {
+              setarTema(temaSalvo);
+            }
+        });
+
     function setarTema(modo) {
         switch(modo) {
             case "claro":
@@ -64,15 +71,8 @@
                 body.classList.add("escuro");
                 body.classList.remove("claro")
                 localStorage.setItem("tema", modo)
-
                 break;
         }
-
-        window.addEventListener("DOMContentLoaded", () => {
-            const temaSalvo = localStorage.getItem("tema");
-            console.log(temaSalvo);
-            setarTema(tema);
-        });
     }
   </script>
 
