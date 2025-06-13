@@ -88,6 +88,18 @@
     const btnAdicionar = document.getElementById("btnAdicionar");
     const listaFilmes = document.getElementById("listaFilmes");
 
+    document.addEventListener("DOMContentLoaded", carregarFavoritos());
+
+    function carregarFavoritos() {
+         const listaFavoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+         listaFavoritos.forEach(favorito => {
+              const titulo = favorito.titulo;
+              const genero = favorito.genero;
+              const ano = favorito.ano;
+              renderizarFilme(titulo, genero, ano);
+         })
+    }
+
     btnAdicionar.addEventListener("click", () => {
         const titulo = inputTitulo.value;
         const genero = inputGenero.value;
@@ -100,6 +112,10 @@
 
         renderizarFilme(titulo, genero, ano);
         adicionarFilmeLS(titulo, genero, ano);
+
+        inputTitulo.value = "";
+        inputGenero.value = "";
+        inputAno.value = "";
     })
 
     function renderizarFilme (titulo, genero, ano) {
@@ -135,11 +151,19 @@
     }
 
     function adicionarFilmeLS(titulo, genero, ano) {
-
+        const addFavorito = {titulo, genero, ano};
+        const listaFavoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        listaFavoritos.push(addFavorito);
+        localStorage.setItem("favoritos", JSON.stringify(listaFavoritos));
     }
 
     function removerFilme(titulo) {
-        
+      console.log(titulo);
+        const listaFavoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+        console.log(listaFavoritos);
+        const favoritosFilter = listaFavoritos.filter(favorito => favorito.titulo !== titulo);
+        console.log(favoritosFilter);
+        localStorage.setItem("favoritos", JSON.stringify(favoritosFilter));
     }
   </script>
 
