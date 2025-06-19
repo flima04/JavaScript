@@ -95,8 +95,8 @@
         const dados = await resposta.json();
         console.log(dados);
         renderizarUsuario(dados);
-      } catch (erro) {
-        console.error("Erro ao buscar dados: ", erro);
+      } catch (error) {
+        erro.textContent = `Erro ao buscar dados! ${error}`;
         return ;
       }
     }
