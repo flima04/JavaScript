@@ -68,6 +68,7 @@
 
   <div id="resultado" class="resultado" style="display:none;"></div>
   <div id="erro" class="erro"></div>
+  <a href=""></a>
 
   <script>
     const username = document.getElementById("username");
@@ -78,7 +79,8 @@
     buscarBtn.addEventListener("click", () => {
         console.log("Clicado!");
         const usuario = username.value;
-        console.log(username);
+        username.value = ""
+        console.log(usuario);
 
         if (!usuario) {
             alert("Digite um nome de usuário.")
@@ -89,9 +91,35 @@
 
     function buscarUsuario(user) {
         fetch(`https://api.github.com/users/${user}`)
-            .then(response => response)
-            .then(data => console.log(data.name ))
-            .catch(erro => console.log(erro));
+            .then(response => response.json())
+            .then(data => {
+                mostrarUsuario(data);
+            })
+            .catch(error => erro.textContent = `Erro! ${error}`);
+    }
+
+    function mostrarUsuario(data) {
+        resultado.innerHTML = "";
+
+        const name = document.createElement("h3");
+        const login = document.createElement("p");
+        const publicRepos = document.createElement("p");
+        const link = document.createElement("a");
+
+        name.textContent = `Nome: ${data.name}`;
+        login.textContent = `Login: ${data.login}`;
+        publicRepos.textContent = `Repositórios Públicos: ${data.public_repos}`;
+        const newlink = data.html_url;
+        link.textContent = "Visite o perfil"
+        link.setAttribute("href", newlink);
+        link.setAttribute("target", "blank");
+
+        resultado.appendChild(name);
+        resultado.appendChild(login);
+        resultado.appendChild(publicRepos);
+        resultado.appendChild(link);
+
+        resultado.style.display = "block";
     }
   </script>
 </body>
