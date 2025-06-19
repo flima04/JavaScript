@@ -1,0 +1,363 @@
+<!-------Exercicio 01-------->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buscar Usuário GitHub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eaecef;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      width: 300px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #0366d6;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #024a9c;
+    }
+
+    .resultado {
+      margin-top: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 350px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .erro {
+      margin-top: 20px;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Buscar Usuário do GitHub</h1>
+  <input type="text" id="username" placeholder="Digite o nome do usuário GitHub" />
+  <button id="buscarBtn">Buscar</button>
+
+  <div id="resultado" class="resultado" style="display:none;"></div>
+  <div id="erro" class="erro"></div>
+  <a href=""></a>
+
+  <script>
+    const username = document.getElementById("username");
+    const buscarBtn = document.getElementById("buscarBtn");
+    const resultado = document.getElementById("resultado");
+    const erro = document.getElementById("erro");
+
+    buscarBtn.addEventListener("click", () => {
+        console.log("Clicado!");
+        const usuario = username.value;
+        username.value = ""
+        console.log(usuario);
+
+        if (!usuario) {
+            alert("Digite um nome de usuário.")
+            return;
+        }
+        buscarUsuario(usuario);
+    })
+
+    function buscarUsuario(user) {
+        fetch(`https://api.github.com/users/${user}`)
+            .then(response => response.json())
+            .then(data => {
+                mostrarUsuario(data);
+            })
+            .catch(error => erro.textContent = `Erro! ${error}`);
+    }
+
+    function mostrarUsuario(data) {
+        resultado.innerHTML = "";
+
+        const name = document.createElement("h3");
+        const login = document.createElement("p");
+        const publicRepos = document.createElement("p");
+        const link = document.createElement("a");
+
+        name.textContent = `Nome: ${data.name}`;
+        login.textContent = `Login: ${data.login}`;
+        publicRepos.textContent = `Repositórios Públicos: ${data.public_repos}`;
+        const newlink = data.html_url;
+        link.textContent = "Visite o perfil"
+        link.setAttribute("href", newlink);
+        link.setAttribute("target", "blank");
+
+        resultado.appendChild(name);
+        resultado.appendChild(login);
+        resultado.appendChild(publicRepos);
+        resultado.appendChild(link);
+
+        resultado.style.display = "block";
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+<!-------Exercicio 02-------->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buscar Usuário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f0ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+      color: #333;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 10px;
+      width: 200px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #0052cc;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #003d99;
+    }
+
+    .resultado {
+      margin-top: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 320px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: left;
+      display: none;
+    }
+
+    .erro {
+      margin-top: 20px;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Buscar Usuário</h1>
+  <input type="number" id="userId" placeholder="Digite um ID (1 a 10)" min="1" max="10" />
+  <button id="buscarBtn">Buscar</button>
+
+  <div id="resultado" class="resultado"></div>
+  <div id="erro" class="erro"></div>
+
+  <script>
+    const userId = document.getElementById("userId");
+    const buscarBtn = document.getElementById("buscarBtn");
+    const resultado = document.getElementById("resultado");
+    const erro = document.getElementById("erro");
+
+    buscarBtn.addEventListener("click", () => {
+      const id = userId.value;
+      userId.value = ""
+      console.log(id);
+
+      if (!id || id < 1 || id > 10 || id % 1 !== 0) {
+        alert("Entrada inválida! Digite um número de 1 a 10.")
+        return;
+      }
+
+      buscarUsuario(id);
+    })
+
+    async function buscarUsuario(id) {
+      try {
+        const resposta = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+        const dados = await resposta.json();
+        console.log(dados);
+        renderizarUsuario(dados);
+      } catch (error) {
+        erro.textContent = `Erro ao buscar dados! ${error}`;
+        return ;
+      }
+    }
+
+    async function renderizarUsuario(dados) {
+      resultado.innerHTML = ""
+      
+      const novoUsuario = document.createElement("div");
+      const userName = document.createElement("h3");
+      const userEmail = document.createElement("p");
+      const userAddress = document.createElement("p");
+
+      userName.textContent = dados.name;
+      userEmail.textContent = dados.email;
+      userAddress.textContent = `${dados.address.street}, ${dados.address.suite}, ${dados.address.city}, ${dados.address.zipcode}.`
+
+      novoUsuario.appendChild(userName);
+      novoUsuario.appendChild(userEmail);
+      novoUsuario.appendChild(userAddress);
+
+      resultado.appendChild(novoUsuario);
+      resultado.style.display = "block";
+    }
+
+  </script>
+</body>
+</html>
+
+
+
+
+
+<!-------Exercicio 01-------->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buscar Posts com Axios</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #333;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #0077cc;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      margin-bottom: 20px;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    .post {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: 400px;
+      padding: 15px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .post h3 {
+      margin: 0 0 10px 0;
+      color: #0077cc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Buscar Posts</h1>
+  <button id="btnBuscar">Buscar Posts</button>
+  <div id="postsContainer"></div>
+
+  <!-- Axios CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    const btnBuscar = document.getElementById("btnBuscar");
+    const postsContainer = document.getElementById("postsContainer");
+
+    btnBuscar.addEventListener("click", () => {
+      console.log("Botao Clicado!")
+      LoadPosts();
+    })
+
+    async function LoadPosts() {
+      try {
+        const response = await axios.get("https://jsonplaceholder.typicode.com/posts?_limit=5");
+        const postsData = await response.data;
+        console.log(postsData);
+        postsContainer.innerHTML = ""
+        renderPosts(postsData);
+      } catch (error) {
+          alert(`Erro! ${error}`);
+      }
+    }
+
+    async function renderPosts(data) {
+      data.forEach(dado => {
+        const newPost = document.createElement("div");
+        const title = document.createElement("h3");
+        const postContent = document.createElement("p");
+
+        title.textContent = dado.title;
+        postContent.textContent = dado.body;
+
+        newPost.classList.add("post");
+        newPost.appendChild(title);
+        newPost.appendChild(postContent);
+        postsContainer.appendChild(newPost);
+      });
+    }
+  </script>
+</body>
+</html>
