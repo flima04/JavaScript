@@ -8,6 +8,8 @@
 </head>
 <body>
 
+    <div id="container">
+        
     <h1>Lista de Compras📝</h1>
     <div id="entrada">
     <label for="item">Nome do item:</label>
@@ -19,21 +21,22 @@
     <label for="categoria">Categoria:</label>
     <select name="categoria" id="categoria">
         <option value="">Selecione</option>
-        <option value="alimentos">Alimentos</option>
-        <option value="limpeza">Limpeza</option>
-        <option value="higiene">Higiene</option>
+        <option value="Alimentos">Alimentos</option>
+        <option value="Limpeza">Limpeza</option>
+        <option value="Higiene">Higiene</option>
     </select>
 
     <button id="btn-add">Adicionar item</button>
     </div>
 
-    <div id="container">
+    <div id="lista">
         <div id="lista-compras">
-            <h2>Itens adicionados:</h2>
         </div>
         <div id="compras-concluidas">
-            <h2>Itens concluídos:</h2>
+            
         </div>
+    </div>
+
     </div>
 
     <script src="script.js"></script>
