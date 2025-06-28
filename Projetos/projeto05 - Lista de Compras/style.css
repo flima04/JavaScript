@@ -25,12 +25,16 @@ h1 {
 }
 
 #entrada {
+    width: 100%;
     background-color: rgb(185, 212, 212);
     color: rgb(42, 41, 63);
     font-weight: 600;
     padding: 15px 40px;
     border-radius: 100px;
     margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 input {
@@ -44,11 +48,11 @@ input {
     width: 50px;
 }
 
-#categoria {
+#categoria, #filtro {
     border: 0px;
     border-radius: 20px;
     padding: 5px;
-    margin-right: 15px;
+    margin: 0px 15px 0px 5px;
 }
 
 button {
@@ -65,15 +69,31 @@ button:hover {
     background-color: rgb(63, 56, 145);
 }
 
+#filter {
+    color: rgb(185, 212, 212);
+    font-weight: 600;
+    width: 100%;
+    border-radius: 40px;
+    margin: 50px 20px 0px 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+
+
 #lista {
     color: rgb(185, 212, 212);
     
-    margin-top: 40px;
 }
 
 #lista-compras {
     display: none;
     margin-bottom: 60px;
+}
+
+#lista-compras h2 {
+    margin-top: 0px;
 }
 
 #compras-concluidas{
@@ -85,7 +105,7 @@ button:hover {
     border-radius: 20px;
     width: 170px;
     padding: 10px;
-    margin: 10px;
+    margin: 15px;
     display: inline-table;
     align-items: center;
 }
