@@ -2,6 +2,8 @@ const itemInput = document.getElementById("item");
 const qtdInput = document.getElementById("qtd");
 const catgInput = document.getElementById("categoria");
 const btnAdd = document.getElementById("btn-add");
+const filterInput = document.getElementById("filtro");
+const btnFilter = document.getElementById("btn-filter")
 const listaCompras = document.getElementById("lista-compras");
 const comprasConcluidas = document.getElementById("compras-concluidas");
 
@@ -11,6 +13,10 @@ document.addEventListener('DOMContentLoaded', loadItems(), loadConcludedItems())
 
 btnAdd.addEventListener("click", () => {
     addOrEditItem();
+})
+
+btnFilter.addEventListener("click", () => {
+    
 })
 
 function getItemsLocalStorage() {
@@ -83,7 +89,7 @@ function loadItems() {
         listaCompras.innerHTML = "";
         return;
     } else {
-        listaCompras.innerHTML = "<span><h2>Itens adicionados:</h2> <span></span></span>"
+        listaCompras.innerHTML = "<h2>Itens adicionados:</h2>"
         items.forEach(item => addItemNoDom(item));
     }
 }
