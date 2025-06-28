@@ -1,11 +1,19 @@
 *{
     box-sizing: border-box;
-}
-    body {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
     color: rgb(185, 212, 212);
     background-color: rgb(42, 41, 63);
-    padding: 30px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container {
+    max-width:1000px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,6 +21,7 @@
 
 h1 {
     font-size: 2.5em;
+    
 }
 
 #entrada {
@@ -49,21 +58,22 @@ button {
     border: 0px;
     border-radius: 20px;
     padding: 9px 20px;
-    margin: 0px 5px;
+    margin: 0px 3px;
 }
 
 button:hover {
     background-color: rgb(63, 56, 145);
 }
 
-#container {
+#lista {
     color: rgb(185, 212, 212);
-    display: inline-flex;
+    
     margin-top: 40px;
 }
 
 #lista-compras {
     display: none;
+    margin-bottom: 60px;
 }
 
 #compras-concluidas{
@@ -73,14 +83,21 @@ button:hover {
 .card {
     color: rgb(42, 41, 63);
     border-radius: 20px;
+    width: 170px;
     padding: 10px;
     margin: 10px;
-    display: inline-block;
+    display: inline-table;
+    align-items: center;
 }
 
 .card h3 {
+    font-size: 1.1em;
     margin:  5px;
     text-align: center;
+}
+
+.card p {
+    margin: 10px auto;
 }
 
 .card button {
@@ -88,14 +105,28 @@ button:hover {
     padding: 10px 10px;
 }
 
-.alimentos {
-    background-color: rgb(212, 113, 73);
+#compras-concluidas .card {
+    filter: grayscale(50%) brightness(50%);  
+    /*box-shadow: 0px 0px 10px rgb(40, 255, 2);*/
 }
 
-.limpeza {
-    background-color: rgb(88, 129, 175);
+#compras-concluidas button {
+    display: flex;
+    margin: auto;
 }
 
-.higiene {
-    background-color: rgb(100, 197, 148);
+.Alimentos {
+    background-color: rgb(192, 137, 119);
+}
+
+.Limpeza {
+    background-color: rgb(109, 145, 202);
+}
+
+.Higiene {
+    background-color: rgb(98, 172, 149);
+}
+
+.editing {
+    box-shadow: 0px 0px 20px rgb(198, 244, 255);
 }
