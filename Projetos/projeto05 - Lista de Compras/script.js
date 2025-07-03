@@ -10,15 +10,15 @@ const comprasConcluidas = document.getElementById("compras-concluidas");
 let idEdicao = null;
 let filtro = "todas";
 
-/* >>>> Carrega todos os intem salvol no LS */
+// Carrega todos os items salvos no LS
 document.addEventListener('DOMContentLoaded', loadItems(), loadConcludedItems());
 
-/* >>>> Chama a função de add ou editar */
+// Chama a função de add ou editar
 btnAdd.addEventListener("click", () => {
     addOrEditItem();
 })
 
-/* >>>> Muda o valor do filtro e chama as funções de carregamento */
+//Muda o valor do filtro e chama as funções de carregamento
 btnFilter.addEventListener("click", () => {
     const filter = filterInput.value;
     filtro = filter;
@@ -26,19 +26,19 @@ btnFilter.addEventListener("click", () => {
     loadConcludedItems();
 })
 
-/* >>>> Retorna um array com todos os items salvos no LS */
+// Retorna um array com todos os items salvos no LS
 function getItemsLocalStorage() {
     const items = localStorage.getItem('items');
     return items ? JSON.parse(items) : [];
 }
 
-/* >>>> Retorna um array com todos os items concluídos salvos no LS */
+// Retorna um array com todos os items concluídos salvos no LS
 function getItemsConcludedLocalStorage() {
     const itemsConcluded = localStorage.getItem('concluded');
     return itemsConcluded ? JSON.parse(itemsConcluded) : [];
 }
 
-/* >>>> Cria ou edita um item e passa um novo array para as fuções de salvar no LS */
+// Cria ou edita um item e passa um novo array para as fuções de salvar no LS
 function addOrEditItem() {
     const item = itemInput.value;
     const qtd = qtdInput.value;
@@ -84,17 +84,17 @@ function addOrEditItem() {
     catgInput.value = "";
 }
 
-/* >>>> Salva novo array de items NÃO concluídos no LS */
+// Salva novo array de items NÃO concluídos no LS
 function saveItemsLocalStorage(items) {
     localStorage.setItem("items", JSON.stringify(items));
 }
 
-/* >>>> Salva novo array de items concluídos no LS */
+// Salva novo array de items concluídos no LS
 function saveItemsConcludedLocalStorage(concluded) {
     localStorage.setItem("concluded", JSON.stringify(concluded));
 }
 
-/* >>>> Carrega os items do LS e passa para a função que add no DOM */
+// Carrega os items do LS e passa para a função que add no DOM
 function loadItems() {
     const items = getItemsLocalStorage();
     if (!items.length){
@@ -112,7 +112,7 @@ function loadItems() {
     }
 }
 
-/* >>>> Carrega os items concluídos do LS e passa para a função que add no DOM */
+// Carrega os items concluídos do LS e passa para a função que add no DOM
 function loadConcludedItems() {
     const concludeItems = getItemsConcludedLocalStorage();
     console.log(concludeItems);
@@ -134,7 +134,7 @@ function loadConcludedItems() {
     }
 }
 
-/* >>>> Adiciona items no DOM */
+// Adiciona items no DOM
 function addItemNoDom(item) {
     const card = document.createElement("div");
     const title = document.createElement("h3");
@@ -185,7 +185,7 @@ function addItemNoDom(item) {
     })
 }
 
-/* >>>> Move itens que estão sendo concluídos, chama as funções salvar no LS e carregar no DOM*/
+// Move itens que estão sendo concluídos, chama as funções salvar no LS e carregar no DOM
 function concludeItem(id) {
     if (id === idEdicao) {
         idEdicao = null;
@@ -203,7 +203,7 @@ function concludeItem(id) {
     loadItems();
 }
 
-/* >>>> Edita um item */
+// Edita um item
 function editItem(id) {
     const items = getItemsLocalStorage();
     const item = items.find(i => i.id === id);
@@ -223,7 +223,7 @@ function editItem(id) {
     idEdicao = id;
 }
 
-/* >>>> Remove um item */
+// Remove um item
 function deleteItem(item) {
     if (item.status === "concluded") {
         const concludeItems = getItemsConcludedLocalStorage();
